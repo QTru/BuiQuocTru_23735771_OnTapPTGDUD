@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Axios demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <script>
+        const API_URL = 'https://69831ab79c3efeb892a46ab7.mockapi.io/api/test/users';
+
+        // CREATE - Add new user
+        function createUser() {
+            axios.post(API_URL, {
+                name: 'John Doe',
+                avatar: 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/1.jpg'
+            })
+                .then(response => console.log('CREATE:', response.data))
+                .catch(error => console.error('CREATE Error:', error));
+        }
+
+        // READ - Get all users
+        function readUsers() {
+            axios.get(API_URL)
+                .then(response => console.log('READ:', response.data))
+                .catch(error => console.error('READ Error:', error));
+        }
+
+        // UPDATE - Update user by ID
+        function updateUser(id) {
+            axios.put(`${API_URL}/${id}`, {
+                name: 'Jane Smith',
+                avatar: 'https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/female/512/2.jpg'
+            })
+                .then(response => console.log('UPDATE:', response.data))
+                .catch(error => console.error('UPDATE Error:', error));
+        }
+
+        // DELETE - Delete user by ID
+        function deleteUser(id) {
+            axios.delete(`${API_URL}/${id}`)
+                .then(response => console.log('DELETE:', response.data))
+                .catch(error => console.error('DELETE Error:', error));
+        }
+
+        readUsers();
+        // createUser();
+        // updateUser('1');
+        // deleteUser('7');
+    </script>
+</body>
+
+</html>
